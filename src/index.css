@@ -27,3 +27,16 @@
  .card-img {
   max-width: 350px;
  }
+
+ .article-view {
+  border: 2px solid blue
+ }
+
+ .article-details {
+  border: 2px solid yellow;
+  display: flex;
+ }
+
+ .article-img {
+  max-width: 90vw;
+ }

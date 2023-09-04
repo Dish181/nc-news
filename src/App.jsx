@@ -1,15 +1,20 @@
-import Header from "./Header"
-import Articles from "./Articles"
-import Footer from "./Footer"
+import Header from "./components/Header";
+import Articles from "./components/Articles";
+import Footer from "./components/Footer";
+import ArticleView from "./components/ArticleView";
+import { Routes, Route } from "react-router-dom";
 
 const App = () => {
   return (
     <>
       <Header />
-      <Articles />
+      <Routes>
+        <Route path="/" element={<Articles />} />
+        <Route path="/articles/:article_id" element={<ArticleView />} />
+      </Routes>
       <Footer />
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;

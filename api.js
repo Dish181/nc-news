@@ -7,4 +7,11 @@ const getArticles = (requestUrl) => {
     })
 }
 
-export {getArticles}
+const getArticle = (article_id) => {
+    return axios.get(`https://dish-nc-news.onrender.com/api/articles/${article_id}`)
+    .then(({data}) => {
+        return data.article
+    })
+}
+
+export {getArticles, getArticle}
