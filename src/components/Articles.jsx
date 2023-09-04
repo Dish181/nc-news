@@ -6,30 +6,37 @@ const Articles = () => {
   const [articles, setArticles] = useState([]);
   const [articleReq, setArticleReq] = useState(
     `https://dish-nc-news.onrender.com/api/articles`
-  );
+  )
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
+    setIsLoading(true)
     getArticles(articleReq).then((articles) => {
+      setIsLoading(false)
       setArticles(articles);
     });
   }, []);
-
-  return (
-    <div className="articles-container">
-      {articles.map((article) => {
-        return (
-          <ArticleCard
-            key={article.article_id}
-            article_id={article.article_id}
-            author={article.author}
-            article_img_url={article.article_img_url}
-            created_at={article.created_at}
-            title={article.title}
-          />
-        );
-      })}
-    </div>
-  );
+  
+  if(isLoading) {
+    return <p>Loading...</p>
+  } else {
+    return (
+      <div className="articles-container">
+        {articles.map((article) => {
+          return (
+            <ArticleCard
+              key={article.article_id}
+              article_id={article.article_id}
+              author={article.author}
+              article_img_url={article.article_img_url}
+              created_at={article.created_at}
+              title={article.title}
+            />
+          );
+        })}
+      </div>
+    );
+  }
 };
 
 export default Articles;
