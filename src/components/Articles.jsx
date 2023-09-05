@@ -4,9 +4,6 @@ import { getArticles } from "../../api";
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
-  const [articleReq, setArticleReq] = useState(
-    `https://dish-nc-news.onrender.com/api/articles`
-  )
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {

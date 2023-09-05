@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getArticle } from "../../api";
+import CommentsContainer from "./CommentsContainer";
 
 const ArticleView = () => {
   const [article, setArticle] = useState({});
@@ -28,6 +29,7 @@ const ArticleView = () => {
             </div>
             <img className="article-img" src={article.article_img_url}/>
             <p>{article.body}</p>
+            <CommentsContainer article_id={article_id}/>
         </div>
     );
   }
