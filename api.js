@@ -21,4 +21,11 @@ const getComments = (article_id) => {
     })
 }
 
-export {getArticles, getArticle, getComments}
+const voteArticle = (article_id, votes) => {
+    return axios.patch(`https://dish-nc-news.onrender.com/api/articles/${article_id}`, {inc_votes: votes})
+    .then(({data}) => {
+        return data
+    })
+}
+
+export {getArticles, getArticle, getComments, voteArticle}

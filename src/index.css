@@ -35,6 +35,8 @@
  .article-details {
   border: 2px solid yellow;
   display: flex;
+  justify-content: space-between;
+  padding-right: 1rem;
  }
 
  .article-img {
@@ -47,4 +49,20 @@
 
 .comment-card {
   border: 2px solid hotpink;
+}
+
+.timestamp-and-author {
+  display: flex;
+}
+
+.votes-container {
+  display: flex;
+}
+
+.positive {
+  color: green;
+}
+
+.negative {
+  color: red;
 }

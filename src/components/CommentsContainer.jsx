@@ -21,6 +21,7 @@ const CommentsContainer = ({article_id}) => {
     } else {
         return (
             <div className="comments-container">
+                {!comments.length ? <p>Start the conversation! Leave a comment on this article below.</p> : null}
                 {comments.map((comment) => {
                     return (
                         <CommentCard 
