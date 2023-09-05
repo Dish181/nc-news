@@ -8,7 +8,7 @@ const Articles = () => {
 
   useEffect(() => {
     setIsLoading(true)
-    getArticles(articleReq).then((articles) => {
+    getArticles().then((articles) => {
       setIsLoading(false)
       setArticles(articles);
     });
