@@ -1,4 +1,5 @@
 import axios from "axios";
+import { loggedInUser } from "./user";
 
 const getArticles = () => {
     return axios.get('https://dish-nc-news.onrender.com/api/articles')
@@ -28,4 +29,11 @@ const voteArticle = (article_id, votes) => {
     })
 }
 
-export {getArticles, getArticle, getComments, voteArticle}
+const addComment = (article_id, comment) => {
+    return axios.post(`https://dish-nc-news.onrender.com/api/articles/${article_id}/comments`, {username: loggedInUser.username, body: comment})
+    .then(({data}) => {
+        return data.postedComment
+    })
+}
+
+export {getArticles, getArticle, getComments, voteArticle, addComment}

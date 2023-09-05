@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import { getComments } from '../../api'
 import CommentCard from './CommentCard'
+import PostComment from './PostComment'
 
 const CommentsContainer = ({article_id}) => {
     const [comments, setComments] = useState([])
@@ -21,7 +22,9 @@ const CommentsContainer = ({article_id}) => {
     } else {
         return (
             <div className="comments-container">
-                {!comments.length ? <p>Start the conversation! Leave a comment on this article below.</p> : null}
+                <h2>{comments.length} Comments</h2>
+                <PostComment setComments={setComments}/>
+                {!comments.length ? <p>Start the conversation! Leave a comment on this article above.</p> : null}
                 {comments.map((comment) => {
                     return (
                         <CommentCard 

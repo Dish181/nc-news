@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { getArticle } from "../../api";
 import { voteArticle } from "../../api";
+
 import CommentsContainer from "./CommentsContainer";
 
 const ArticleView = () => {
@@ -13,10 +14,10 @@ const ArticleView = () => {
   const [err, setErr] = useState(null);
   const { article_id } = useParams();
 
+
   useEffect(() => {
     setIsLoading(true);
     getArticle(article_id).then((article) => {
-      console.log(article);
       setIsLoading(false);
       setArticle(article);
       setVotes(article.votes);
