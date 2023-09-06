@@ -69,4 +69,24 @@
 
 .filters {
   border: 2px solid chartreuse;
+  width: 100%
 }
+
+.sort-and-filter {
+  display: flex;
+  padding: 2px;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.sort-by {
+  display: flex;
+  border: 2px solid purple;
+  align-items: center;
+}
+
+.label-radio-container {
+  margin: 0 1rem
+}
+

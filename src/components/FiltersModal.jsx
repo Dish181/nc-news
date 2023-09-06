@@ -2,7 +2,7 @@ import {useState, useEffect} from 'react'
 import { getTopics } from '../../api'
 import {Link} from 'react-router-dom'
 
-const FiltersModal = ({setIsModalActive}) => {
+const FiltersModal = ({setIsFilterActive}) => {
 const [topics, setTopics] = useState([])
 
 useEffect(() => {
@@ -17,7 +17,7 @@ useEffect(() => {
         <h2>Filter by topic:</h2>
         {topics.map((topic) => {
             return (
-                <Link onClick={() => {setIsModalActive(false)}} key={topic.slug} to={`/${topic.slug}`}><button>{topic.slug}</button></Link>
+                <Link onClick={() => {setIsFilterActive(false)}} key={topic.slug} to={`/${topic.slug}`}><button>{topic.slug}</button></Link>
             )
         })}
     </div>

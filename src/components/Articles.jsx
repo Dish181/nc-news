@@ -2,37 +2,45 @@ import ArticleCard from "./ArticleCard";
 import { useState, useEffect } from "react";
 import { getArticles } from "../../api";
 import FiltersModal from "./FiltersModal";
-import {useParams, useNavigate} from 'react-router-dom'
+import {useParams} from 'react-router-dom'
+import SortBy from "./SortBy";
+import {useSearchParams} from 'react-router-dom'
+import SortAndFilter from "./SortAndFilter";
 
 const Articles = () => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isModalActive, setIsModalActive] = useState(false)
+  const [isFilterActive, setIsFilterActive] = useState(false)
   const {topic_slug} = useParams()
+  const [searchParams, setSearchParams] = useSearchParams()
   
 
   useEffect(() => {
     setIsLoading(true)
-    getArticles(topic_slug).then((articles) => {
+    getArticles(topic_slug, searchParams).then((articles) => {
       setIsLoading(false)
       setArticles(articles);
     });
-  }, [topic_slug]);
+  }, [topic_slug, searchParams]);
 
-  const openModal = (event) => {
+  const openFilters = (event) => {
     event.preventDefault()
-    setIsModalActive(() => {
-      return !isModalActive
+    setIsFilterActive(() => {
+      return !isFilterActive
     })
   }
-  
+
   if(isLoading) {
     return <p>Loading...</p>
   } else {
     return (
       <>
-      <button className="filters-button" onClick={openModal}>Filters</button>
-      {isModalActive ? <FiltersModal setIsModalActive={setIsModalActive}/> : null}
+      <div className="sort-and-filter">
+      <button className="filters-button" onClick={openFilters}>Filters</button>
+      {topic_slug ? <p>Currently viewing: {topic_slug}</p> : null}
+      <SortBy setSearchParams={setSearchParams}/>
+      {isFilterActive ? <FiltersModal setIsFilterActive={setIsFilterActive}/> : null}
+      </div>
       <div className="articles-container">
         {articles.map((article) => {
           return (
@@ -43,6 +51,8 @@ const Articles = () => {
               article_img_url={article.article_img_url}
               created_at={article.created_at}
               title={article.title}
+              comment_count={article.comment_count}
+              votes={article.votes}
             />
           );
         })}

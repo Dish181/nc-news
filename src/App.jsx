@@ -3,6 +3,7 @@ import Articles from "./components/Articles";
 import Footer from "./components/Footer";
 import ArticleView from "./components/ArticleView";
 import { Routes, Route } from "react-router-dom";
+import SortAndFilter from "./components/SortAndFilter";
 
 const App = () => {
   return (
