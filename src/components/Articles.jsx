@@ -1,18 +1,15 @@
 import ArticleCard from "./ArticleCard";
 import { useState, useEffect } from "react";
 import { getArticles } from "../../api";
-import FiltersModal from "./FiltersModal";
 import {useParams} from 'react-router-dom'
-import SortBy from "./SortBy";
-import {useSearchParams} from 'react-router-dom'
-import SortAndFilter from "./SortAndFilter";
 
-const Articles = () => {
+
+
+const Articles = ({searchParams}) => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [isFilterActive, setIsFilterActive] = useState(false)
   const {topic_slug} = useParams()
-  const [searchParams, setSearchParams] = useSearchParams()
+  
   
 
   useEffect(() => {
@@ -23,24 +20,12 @@ const Articles = () => {
     });
   }, [topic_slug, searchParams]);
 
-  const openFilters = (event) => {
-    event.preventDefault()
-    setIsFilterActive(() => {
-      return !isFilterActive
-    })
-  }
+ 
 
   if(isLoading) {
     return <p>Loading...</p>
   } else {
     return (
-      <>
-      <div className="sort-and-filter">
-      <button className="filters-button" onClick={openFilters}>Filters</button>
-      {topic_slug ? <p>Currently viewing: {topic_slug}</p> : null}
-      <SortBy setSearchParams={setSearchParams}/>
-      {isFilterActive ? <FiltersModal setIsFilterActive={setIsFilterActive}/> : null}
-      </div>
       <div className="articles-container">
         {articles.map((article) => {
           return (
@@ -57,7 +42,6 @@ const Articles = () => {
           );
         })}
       </div>
-      </>
     );
   }
 };

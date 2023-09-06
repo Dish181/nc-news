@@ -4,8 +4,7 @@ import { loggedInUser } from "./user";
 const getArticles = (topic_slug, searchParams) => {
     let request = `https://dish-nc-news.onrender.com/api/articles`
     topic_slug ? request += `?topic=${topic_slug}` : request
-    searchParams.keys().length ? request += `&${searchParams}` : request
-    console.log(request)
+    searchParams.size ? request += `&${searchParams}` : request
     return axios.get(request)
     .then(({data}) => {
         return data.articles

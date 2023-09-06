@@ -1,8 +1,6 @@
 import {ArrowUpIcon, ArrowDownIcon} from '@chakra-ui/icons'
-import {useState} from 'react'
 
 const SortBy = ({setSearchParams}) => {
-    const [checked, setChecked] = useState('date')
 
     const handleSort = (event) => {
         setSearchParams((searchParams) => {
