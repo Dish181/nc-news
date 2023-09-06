@@ -1,8 +1,10 @@
 import axios from "axios";
 import { loggedInUser } from "./user";
 
-const getArticles = () => {
-    return axios.get('https://dish-nc-news.onrender.com/api/articles')
+const getArticles = (topic_slug) => {
+    let request = `https://dish-nc-news.onrender.com/api/articles`
+    topic_slug ? request += `?topic=${topic_slug}` : request
+    return axios.get(request)
     .then(({data}) => {
         return data.articles
     })
@@ -36,4 +38,11 @@ const addComment = (article_id, comment) => {
     })
 }
 
-export {getArticles, getArticle, getComments, voteArticle, addComment}
+const getTopics = () => {
+    return axios.get('https://dish-nc-news.onrender.com/api/topics')
+    .then(({data}) => {
+        return data.topics
+    })
+}
+
+export {getArticles, getArticle, getComments, voteArticle, addComment, getTopics}

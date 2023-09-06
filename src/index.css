@@ -66,3 +66,7 @@
 .negative {
   color: red;
 }
+
+.filters {
+  border: 2px solid chartreuse;
+}
