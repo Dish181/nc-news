@@ -1,11 +1,11 @@
 import SortBy from "./SortBy"
 import {useState} from 'react'
 import FiltersModal from './FiltersModal'
-import {useParams} from 'react-router-dom'
+
 
 const SortAndFilter = ({setSearchParams}) => {
     const [isFilterActive, setIsFilterActive] = useState(false)
-    const {topic_slug} = useParams()
+    const [activeFilter, setActiveFilter] = useState('all')
 
     const openFilters = (event) => {
         event.preventDefault()
@@ -16,9 +16,9 @@ const SortAndFilter = ({setSearchParams}) => {
     return (
         <div className="sort-and-filter">
       <button className="filters-button" onClick={openFilters}>Filters</button>
-      {topic_slug ? <p>Currently viewing: {topic_slug}</p> : null}
+      <p>Currently viewing: {activeFilter} articles</p>
       <SortBy setSearchParams={setSearchParams}/>
-      {isFilterActive ? <FiltersModal setIsFilterActive={setIsFilterActive}/> : null}
+      {isFilterActive ? <FiltersModal setActiveFilter={setActiveFilter} setSearchParams={setSearchParams} setIsFilterActive={setIsFilterActive}/> : null}
       </div>
     )
 }

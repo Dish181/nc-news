@@ -13,8 +13,8 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/" element={<><SortAndFilter  setSearchParams={setSearchParams}/><Articles  searchParams={searchParams}/></>} />
-        <Route path="/:topic_slug" element={<><SortAndFilter  setSearchParams={setSearchParams}/><Articles  searchParams={searchParams}/></>} />
         <Route path="/articles/:article_id" element={<ArticleView />} />
+        
       </Routes>
       <Footer />
     </>

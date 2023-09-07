@@ -14,11 +14,11 @@ const Articles = ({searchParams}) => {
 
   useEffect(() => {
     setIsLoading(true)
-    getArticles(topic_slug, searchParams).then((articles) => {
+    getArticles(searchParams).then((articles) => {
       setIsLoading(false)
       setArticles(articles);
     });
-  }, [topic_slug, searchParams]);
+  }, [searchParams]);
 
  
 

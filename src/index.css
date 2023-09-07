@@ -79,7 +79,8 @@ a {
  }
 
  .article-view {
-  margin: 1rem 0
+  margin: 1rem 0;
+  padding: 1rem;
  }
 
  .article-details {
@@ -89,6 +90,7 @@ a {
   padding-right: 1rem;
   font-size: small;
   height: 40px;
+  margin-bottom: 1rem
  }
 
  .article-timestamp {

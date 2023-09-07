@@ -1,8 +1,7 @@
 import {useState, useEffect} from 'react'
 import { getTopics } from '../../api'
-import {Link} from 'react-router-dom'
 
-const FiltersModal = ({setIsFilterActive}) => {
+const FiltersModal = ({setIsFilterActive, setSearchParams, setActiveFilter}) => {
 const [topics, setTopics] = useState([])
 
 useEffect(() => {
@@ -12,13 +11,25 @@ useEffect(() => {
     })
 }, [])
 
+const handleFilter = (event) => {
+    setIsFilterActive(false)
+    setActiveFilter(event.target.id)
+    setSearchParams((searchParams) => {
+        searchParams.delete('topic')
+        if (event.target.id) {
+            searchParams.append('topic', event.target.id)
+        }
+        return searchParams
+    })
+}
+
   return (
     <div className='filters'>
         <h2>Filter by topic:</h2>
-        <Link to='/' onClick={() => {setIsFilterActive(false)}}><button>all</button></Link>
+        <button>all</button>
         {topics.map((topic) => {
             return (
-                <Link onClick={() => {setIsFilterActive(false)}} key={topic.slug} to={`/${topic.slug}`}><button>{topic.slug}</button></Link>
+                <button key={topic.slug} id={topic.slug} onClick={handleFilter}>{topic.slug}</button>
             )
         })}
     </div>
