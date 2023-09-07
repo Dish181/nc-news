@@ -12,6 +12,7 @@ const ArticleView = () => {
   const [voted, setVoted] = useState(false);
   const [inactive, setInactive] = useState("");
   const [err, setErr] = useState(null);
+  const [articleErr, setArticleErr] = useState(null)
   const { article_id } = useParams();
 
 
@@ -21,6 +22,10 @@ const ArticleView = () => {
       setIsLoading(false);
       setArticle(article);
       setVotes(article.votes);
+    })
+    .catch((err) => {
+      setIsLoading(false)
+      setArticleErr(err)
     });
   }, []);
 
@@ -94,6 +99,13 @@ const ArticleView = () => {
 
   if (isLoading) {
     return <p>Loading...</p>;
+  } else if (articleErr){
+    return (
+      <div className="article-error">
+      <h1>Error code: {articleErr.response.status}</h1>
+      <p>{articleErr.response.data.msg}</p>
+      </div>
+    )
   } else {
     return (
       <>

@@ -2,6 +2,7 @@ import ArticleCard from "./ArticleCard";
 import { useState, useEffect } from "react";
 import { getArticles } from "../../api";
 import {useParams} from 'react-router-dom'
+import ErrorPage from "./ErrorPage";
 
 
 
@@ -24,7 +25,7 @@ const Articles = ({searchParams}) => {
 
   if(isLoading) {
     return <p>Loading...</p>
-  } else {
+  } else if (articles.length){
     return (
       <div className="articles-container">
         {articles.map((article) => {
@@ -43,6 +44,8 @@ const Articles = ({searchParams}) => {
         })}
       </div>
     );
+  } else {
+    return <ErrorPage message="The topic that you're filtering by currently does not exist"/>
   }
 };
 
