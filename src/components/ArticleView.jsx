@@ -96,6 +96,7 @@ const ArticleView = () => {
     return <p>Loading...</p>;
   } else {
     return (
+      <>
       <div className="article-view">
         <h2 className="article-title">{article.title}</h2>
         <div className="article-details">
@@ -131,8 +132,9 @@ const ArticleView = () => {
         </div>
         <img className="article-img" src={article.article_img_url} />
         <p>{article.body}</p>
+        </div>
         <CommentsContainer article_id={article_id} />
-      </div>
+      </>
     );
   }
 };

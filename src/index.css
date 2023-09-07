@@ -1,16 +1,36 @@
+body {
+  background-color: #f5f5ff;
+  display: flex;
+  justify-content: center;
+}
+
 #root {
   display: flex;
   flex-direction: column;
+  font-family: poppins, sans-serif;
+  max-width: 80%;
 }
 
 .header {
-  border: 2px solid red
+  background-color: white;
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+ .sort-and-filter, .articles-container, .article-card, .header, .article-view, .comments-container {
+  border: 1px solid #e5e5ff;
+  background-color: white;
+  border-radius: 0.5rem;
 }
  .articles-container {
-  border: 2px solid blue;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
+  background-color: white;
  }
 
  .footer {
@@ -18,37 +38,87 @@
  }
 
  .article-card {
-  border: 2px solid yellow;
-  max-width: 350px;
-  margin: 1rem;
-  padding: 1rem;
+  height: 400px;
+  width: 287.5px;
+  margin: 16px;
+  padding: 16px;
  }
 
+ .article-card:hover {
+  box-shadow: 0 0 10px #e5e5ff;
+ }
+
+ .timestamp {
+  font-size: small;
+  margin: 0 0 8px;
+ }
+  .card-title {
+    font-size: large;
+    margin: 0 0 8px;
+  }
+
+  .card-author {
+    font-size: small;
+    margin: 0 0 8px;
+  }
+
+  .card-votes {
+    font-size: small;
+    margin: 0 0 8px;
+  }
+
+  .card-comments {
+    font-size: small;
+    margin: 0 0 8px;
+  }
+
  .card-img {
-  max-width: 350px;
+  height: 200px;
+  width: auto;
+  max-width: 100%;
  }
 
  .article-view {
-  border: 2px solid blue
+  margin: 1rem 0
  }
 
  .article-details {
-  border: 2px solid yellow;
+  background-color: #f5f5ff;
   display: flex;
   justify-content: space-between;
   padding-right: 1rem;
+  font-size: small;
+  height: 40px;
+ }
+
+ .article-timestamp {
+  margin-right: 8px;
  }
 
  .article-img {
-  max-width: 90vw;
+  max-width: 100%;
+ }
+
+ .votes-container {
+  align-items: center;
+ }
+
+ #upvote, #downvote {
+  height: 50%;
+ }
+
+ .timestamp-and-author {
+  display: flex;
+  align-items: center;
  }
 
  .comments-container {
-  border: 2px solid brown
+  padding: 1rem
  }
 
 .comment-card {
-  border: 2px solid hotpink;
+  margin: 1rem 0;
+  border-top: 1px solid #e5e5ff;
 }
 
 .timestamp-and-author {
@@ -78,6 +148,8 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
+  background-color: white;
+  margin: 1rem 0
 }
 
 .sort-by {

@@ -15,6 +15,7 @@ useEffect(() => {
   return (
     <div className='filters'>
         <h2>Filter by topic:</h2>
+        <Link to='/' onClick={() => {setIsFilterActive(false)}}><button>all</button></Link>
         {topics.map((topic) => {
             return (
                 <Link onClick={() => {setIsFilterActive(false)}} key={topic.slug} to={`/${topic.slug}`}><button>{topic.slug}</button></Link>
