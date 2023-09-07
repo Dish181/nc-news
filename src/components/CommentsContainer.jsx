@@ -32,7 +32,10 @@ const CommentsContainer = ({article_id}) => {
                         author={comment.author} 
                         created_at={comment.created_at}
                         body={comment.body}
-                        votes={comment.votes}/>
+                        votes={comment.votes}
+                        comment_id={comment.comment_id}
+                        setComments={setComments}
+                        comments={comments}/>
                     )
                 })}
             </div>

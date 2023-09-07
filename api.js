@@ -3,6 +3,7 @@ import { loggedInUser } from "./user";
 
 const getArticles = (topic_slug, searchParams) => {
     let request = `https://dish-nc-news.onrender.com/api/articles`
+    topic_slug || searchParams.size ? request += '?' : request
     topic_slug ? request += `?topic=${topic_slug}` : request
     searchParams.size ? request += `&${searchParams}` : request
     return axios.get(request)
@@ -46,4 +47,11 @@ const getTopics = () => {
     })
 }
 
-export {getArticles, getArticle, getComments, voteArticle, addComment, getTopics}
+const deleteComment = (comment_id) => {
+    return axios.delete(`https://dish-nc-news.onrender.com/api/comments/${comment_id}`)
+    .then((response) => {
+        return response
+    })
+}
+
+export {getArticles, getArticle, getComments, voteArticle, addComment, getTopics, deleteComment}
