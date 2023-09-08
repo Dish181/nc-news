@@ -163,3 +163,8 @@ a {
   margin: 0 1rem
 }
 
+@media (max-width: 610px) {
+  #root {
+    width: 100%;
+  }
+}
