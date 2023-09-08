@@ -1,19 +1,49 @@
 import {useState, useEffect} from 'react'
-import { getComments } from '../../api'
+import { getComments, getUsers } from '../../api'
 import CommentCard from './CommentCard'
 import PostComment from './PostComment'
 
 const CommentsContainer = ({article_id}) => {
+    const [users, setUsers] = useState([])
     const [comments, setComments] = useState([])
     const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
         setIsLoading(true)
-        getComments(article_id)
-        .then((comments) => {
-            setIsLoading(false)
+        Promise.all([getUsers(), getComments(article_id)])
+        .then(([users, comments]) => {
+            setUsers(users)
             setComments(comments)
+            const imagelessComments = comments
+            const imageComments = imagelessComments.map((comment) => {
+                const matchingUser = users.find((user) => {
+                    return user.username === comment.author
+                })
+                return {...comment, userAvatar: matchingUser.avatar_url}
+            })
+            setIsLoading(false)
+            setComments(imageComments)
         })
+        // getUsers()
+        // .then((users) => {
+        //     setUsers(users)
+        // })
+        // .then(() => {
+        //     return getComments(article_id)
+        // })
+        // .then((comments) => {
+        //     console.log(users, 'users')
+        //     const imagelessComments = comments
+        //     console.log(imagelessComments, 'assigned comments to var')
+        //     const imageComments = imagelessComments.map((comment) => {
+        //         const matchingUser = users.find((user) => {
+        //             return user.username === comment.author
+        //         })
+        //         return {...comment, userAvatar: matchingUser.avatar_url}
+        //     })
+        //     setIsLoading(false)
+        //     setComments(imageComments)
+        // })
     }, [])
 
 
@@ -35,7 +65,9 @@ const CommentsContainer = ({article_id}) => {
                         votes={comment.votes}
                         comment_id={comment.comment_id}
                         setComments={setComments}
-                        comments={comments}/>
+                        comments={comments}
+                        userAvatar={comment.userAvatar}
+                        />
                     )
                 })}
             </div>

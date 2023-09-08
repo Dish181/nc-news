@@ -1,7 +1,6 @@
 import ArticleCard from "./ArticleCard";
 import { useState, useEffect } from "react";
 import { getArticles } from "../../api";
-import {useParams} from 'react-router-dom'
 import ErrorPage from "./ErrorPage";
 
 
@@ -9,8 +8,6 @@ import ErrorPage from "./ErrorPage";
 const Articles = ({searchParams}) => {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const {topic_slug} = useParams()
-  
   
 
   useEffect(() => {

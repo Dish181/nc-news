@@ -113,7 +113,7 @@ const ArticleView = () => {
         <h2 className="article-title">{article.title}</h2>
         <div className="article-details">
           <div className="timestamp-and-author">
-            <p className="article-timestamp">{article.created_at}</p>
+            <p className="article-timestamp">{new Date(article.created_at).toLocaleDateString()}</p>
             <p className="article-author">by {article.author}</p>
           </div>
           <div className="votes-container">

@@ -9,6 +9,7 @@ const CommentCard = ({
   votes,
   comment_id,
   setComments,
+  userAvatar
 }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState(null)
@@ -34,13 +35,19 @@ const CommentCard = ({
 
   return (
     <div className="comment-card">
+      <div className="comment-top">
+        <div className="comment-author-details">
+        <img src={userAvatar} className="user-avatar"/>
       {author === loggedInUser.username ? (
-        <p>from You</p>
+        <p>from <span className="you">You</span></p>
       ) : (
         <p className="comment-author">from {author}</p>
       )}
-      <p className="comment-timestamp">at {created_at}</p>
+      </div>
+      <p className="comment-timestamp">on {new Date(created_at).toLocaleDateString()}</p>
+      </div>
       <p className="comment-body">{body}</p>
+      <div className="comment-footer">
       <p className="comment-votes">{votes} votes</p>
       {author === loggedInUser.username ? (
         <button id={comment_id} onClick={handleDelete} disabled={isLoading}>
@@ -49,6 +56,7 @@ const CommentCard = ({
       ) : null}
       {isLoading ? <p>Deleting comment...</p> : null}
       {err ? <p>{err}</p> : null}
+      </div>
     </div>
   );
 };

@@ -44,9 +44,11 @@ const PostComment = ({setComments}) => {
             <form className="post-comment" onSubmit={handleSubmit}>
                 <label className="comment-label" htmlFor="comment">Add a comment</label>
                 <input id='comment' value={comment} onChange={handleTyping}></input>
-                <button onClick={handleClear} disabled={!comment}>Clear</button>
-                <button disabled={!comment}>Comment</button>
+                <div className='comment-buttons'>
+                <button onClick={handleClear} className={comment ? null : 'inactive'} disabled={!comment}>Clear</button>
+                <button disabled={!comment} className={comment ? null : 'inactive'}>Comment</button>
                 {err ? <p>There was a problem adding your comment, please try again</p> : null}
+                </div>
             </form>
         )
     }

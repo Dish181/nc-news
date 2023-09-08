@@ -1,6 +1,5 @@
 import Header from "./components/Header";
 import Articles from "./components/Articles";
-import Footer from "./components/Footer";
 import ArticleView from "./components/ArticleView";
 import { Routes, Route, useSearchParams } from "react-router-dom";
 import SortAndFilter from "./components/SortAndFilter";
@@ -17,7 +16,7 @@ const App = () => {
         <Route path="/articles/:article_id" element={<ArticleView />} />
         <Route path="*" element={<ErrorPage />} />
         </Routes>
-      <Footer />
+
     </>
   );
 };

@@ -1,6 +1,7 @@
 import {useState, useEffect} from 'react'
 import { getTopics } from '../../api'
 
+
 const FiltersModal = ({setIsFilterActive, setSearchParams, setActiveFilter}) => {
 const [topics, setTopics] = useState([])
 
@@ -13,11 +14,13 @@ useEffect(() => {
 
 const handleFilter = (event) => {
     setIsFilterActive(false)
-    setActiveFilter(event.target.id)
     setSearchParams((searchParams) => {
         searchParams.delete('topic')
         if (event.target.id) {
             searchParams.append('topic', event.target.id)
+            setActiveFilter(event.target.id)
+        } else {
+            setActiveFilter('all')
         }
         return searchParams
     })
@@ -26,12 +29,14 @@ const handleFilter = (event) => {
   return (
     <div className='filters'>
         <h2>Filter by topic:</h2>
-        <button>all</button>
+        <div className='filter-buttons-container'>
+        <button className='filter-button' onClick={handleFilter}>all</button>
         {topics.map((topic) => {
             return (
-                <button key={topic.slug} id={topic.slug} onClick={handleFilter}>{topic.slug}</button>
+                <button className='filter-button' key={topic.slug} id={topic.slug} onClick={handleFilter}>{topic.slug}</button>
             )
         })}
+        </div>
     </div>
   )
 }

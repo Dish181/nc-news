@@ -52,4 +52,11 @@ const deleteComment = (comment_id) => {
     })
 }
 
-export {getArticles, getArticle, getComments, voteArticle, addComment, getTopics, deleteComment}
+const getUsers = () => {
+    return axios.get('https://dish-nc-news.onrender.com/api/users')
+    .then(({data}) => {
+        return data.users
+    })
+}
+
+export {getArticles, getArticle, getComments, voteArticle, addComment, getTopics, deleteComment, getUsers}
