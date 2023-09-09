@@ -24,26 +24,6 @@ const CommentsContainer = ({article_id}) => {
             setIsLoading(false)
             setComments(imageComments)
         })
-        // getUsers()
-        // .then((users) => {
-        //     setUsers(users)
-        // })
-        // .then(() => {
-        //     return getComments(article_id)
-        // })
-        // .then((comments) => {
-        //     console.log(users, 'users')
-        //     const imagelessComments = comments
-        //     console.log(imagelessComments, 'assigned comments to var')
-        //     const imageComments = imagelessComments.map((comment) => {
-        //         const matchingUser = users.find((user) => {
-        //             return user.username === comment.author
-        //         })
-        //         return {...comment, userAvatar: matchingUser.avatar_url}
-        //     })
-        //     setIsLoading(false)
-        //     setComments(imageComments)
-        // })
     }, [])
 
 

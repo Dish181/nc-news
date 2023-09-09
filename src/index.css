@@ -31,15 +31,59 @@ button {
   cursor: pointer;
 }
 
-button:hover {
+.active {
+  background-color: blue;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  margin: 4px;
+  cursor: pointer;
+}
+
+.active:hover {
+  background-color: darkblue;
+  border: none;
+  color: white
+}
+
+.active-secondary {
   background-color: white;
   color: blue;
-  border: 2px solid blue
+  border: 2px solid blue;
+}
+
+.active-secondary:hover {
+  color: black;
+  border: 2px solid black
+}
+
+.inactive {
+  background-color: grey;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  margin: 4px;
+  cursor:auto
+}
+
+#clear-button, .inactive:hover{
+  background-color: grey;
+  border: none;
+  color: white;
+  border-radius: 6px;
+  cursor:auto;
+}
+
+button:hover {
+  background-color: white;
+  border: 2px solid red;
+  color: red;
 }
 
 .inactive {
   background-color: grey;
 }
+
 
 #comment {
   border: 1px solid #e5e5ff;
@@ -66,7 +110,7 @@ button:hover {
  .article-card {
   height: 400px;
   width: 287.5px;
-  margin: 16px;
+  margin: 16px 0px;
   padding: 16px;
  }
 
@@ -229,21 +273,42 @@ button:hover {
   border-radius: 15px;
   font-weight: bold;
   font-size: 1rem;
+  background-color: blue;
+  border: none;
+  color: white;
+}
+
+.filter-button:hover {
+  background-color: white;
+  color: blue;
+  border: 2px solid blue
 }
 
 .sort-by {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  gap: 1rem
 }
 
 .label-radio-container {
-  margin: 0 1rem;
   display: flex;
   align-items: center;
 }
 
 .you {
   color: blue;
+}
+
+.delete-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.arrows-container {
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 @media (max-width: 610px) {
@@ -260,5 +325,9 @@ button:hover {
 
   button {
     height: 40px;
+  }
+
+  .sort-and-filter {
+    padding-bottom: 1rem;
   }
 }

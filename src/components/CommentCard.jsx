@@ -1,6 +1,8 @@
 import { deleteComment } from "../../api";
 import { loggedInUser } from "../../user";
 import { useState } from "react";
+import {DeleteIcon} from '@chakra-ui/icons'
+import {IconButton} from '@chakra-ui/react'
 
 const CommentCard = ({
   author,
@@ -14,16 +16,14 @@ const CommentCard = ({
   const [isLoading, setIsLoading] = useState(false);
   const [err, setErr] = useState(null)
 
-  const handleDelete = (event) => {
-    event.preventDefault();
+  const handleDelete = (comment_id) => {
     setErr(null)
     setIsLoading(true);
-    const commentToDelete = +event.target.id
-    deleteComment(commentToDelete).then(() => {
+    deleteComment(comment_id).then(() => {
       setIsLoading(false);
       setComments((comments) => {
         return comments.filter((comment) => {
-            return comment.comment_id !== commentToDelete
+            return comment.comment_id !== comment_id
         })
       })
     })
@@ -49,13 +49,13 @@ const CommentCard = ({
       <p className="comment-body">{body}</p>
       <div className="comment-footer">
       <p className="comment-votes">{votes} votes</p>
+      <div className="delete-container">
       {author === loggedInUser.username ? (
-        <button id={comment_id} onClick={handleDelete} disabled={isLoading}>
-          Delete
-        </button>
+        <IconButton onClick={(event) => { handleDelete(comment_id)}} color='white' height='40px' width='40px' backgroundColor='red' icon={ <DeleteIcon id={comment_id} margin='auto' boxSize='20' />} />
       ) : null}
       {isLoading ? <p>Deleting comment...</p> : null}
       {err ? <p>{err}</p> : null}
+      </div>
       </div>
     </div>
   );

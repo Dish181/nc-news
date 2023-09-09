@@ -119,7 +119,7 @@ const ArticleView = () => {
           <div className="votes-container">
             {err ? <p>{err}</p> : null}
             <button
-              className={inactive === "upvote" ? "inactive" : "active"}
+              className={`${inactive === "upvote" ? "inactive" : "active"} vote-button`}
               id="upvote"
               onClick={handleUpVote}
               disabled={inactive === "upvote"}
@@ -128,7 +128,7 @@ const ArticleView = () => {
               Upvote
             </button>
             <button
-              className={inactive === "downvote" ? "inactive" : "active"}
+              className={`${inactive === "downvote" ? "inactive" : "active"} vote-button`}
               id="downvote"
               onClick={handleDownVote}
               disabled={inactive === "downvote"}

@@ -1,6 +1,7 @@
 import {useState} from 'react'
 import {useParams} from 'react-router-dom'
 import { addComment } from '../../api'
+import { loggedInUser } from '../../user'
 
 
 const PostComment = ({setComments}) => {
@@ -27,7 +28,7 @@ const PostComment = ({setComments}) => {
             setComment('')
             setIsLoading(false)
             setComments((comments) => {
-                return [comment, ...comments]
+                return [{...comment, userAvatar: loggedInUser.avatar_url}, ...comments]
             })
         })
         .catch((err) => {
@@ -45,8 +46,8 @@ const PostComment = ({setComments}) => {
                 <label className="comment-label" htmlFor="comment">Add a comment</label>
                 <input id='comment' value={comment} onChange={handleTyping}></input>
                 <div className='comment-buttons'>
-                <button onClick={handleClear} className={comment ? null : 'inactive'} disabled={!comment}>Clear</button>
-                <button disabled={!comment} className={comment ? null : 'inactive'}>Comment</button>
+                <button onClick={handleClear} className={comment ? 'active-secondary' : 'inactive'} disabled={!comment}>Clear</button>
+                <button disabled={!comment} className={comment ? 'active' : 'inactive'}>Comment</button>
                 {err ? <p>There was a problem adding your comment, please try again</p> : null}
                 </div>
             </form>

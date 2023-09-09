@@ -45,8 +45,11 @@ const SortBy = ({setSearchParams}) => {
         <div className="label-radio-container">
         <label className="sort-label"  htmlFor="votes">Votes</label>
         <input name="sort" type="radio" className="sort-radio" id="votes" value="votes" onClick={handleSort} checked={checked === 'votes'} onChange={() => {setChecked('votes')}}></input>
+        </div>
+        <div className='arrows-container'>
         <ArrowDownIcon margin-left='1rem' boxSize={'25'} value='desc' onClick={handleDesc} color={direction === 'desc' ? 'blue' : 'black'} cursor='pointer' animation={direction === 'desc' ? 'shake 0.5s' : null} border={direction === 'desc' ? '1px solid blue' : null} />
         <ArrowUpIcon value='asc' onClick={handleAsc} color={direction === 'asc' ? 'blue' : 'black'} cursor='pointer' boxSize={'25'} border={direction === 'asc' ? '1px solid blue' : null} />
+        
         </div>
     </div>
     )
