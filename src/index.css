@@ -253,7 +253,8 @@ button:hover {
   align-items: center;
   flex-wrap: wrap;
   background-color: white;
-  margin: 1rem 0
+  margin: 1rem 0;
+  gap: 1rem;
 }
 
 .open-filters {
@@ -311,7 +312,7 @@ button:hover {
   flex-wrap: nowrap;
 }
 
-@media (max-width: 610px) {
+@media (max-width: 620px) {
   #root {
     width: 100%;
   }
